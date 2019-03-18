@@ -1,0 +1,50 @@
+
+{% extends 'back/base_main.html' %}
+
+
+{% block title %}
+    文章列表页面
+{% endblock %}
+
+
+{% block content %}
+    <section class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">文章列表</h2>
+                <a href="{{ url_for('back.article_add') }}" class="fr top_rt_btn add_icon">添加文章</a>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>文章标题</th>
+                    <th>文章分类</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                {% for article in articles %}
+                    <tr>
+                        <td class="center">{{ article.title }}</td>
+                        <td class="center">{{ article.tp.t_name }}</td>
+                        <td class="center">{{ article.create_time }}</td>
+                        <td class="center">
+                            <a href="" title="编辑" class="link_icon">&#101;</a>
+                            <a onclick="" title="删除" class="link_icon">&#100;</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <!--<aside class="paging">-->
+                <!--<a>当前1页</a>-->
+                <!--<a href="">第一页</a>-->
+
+                    <!--<a href=""> 1 </a>-->
+
+                    <!--<a href=""> 2 </a>-->
+
+                    <!--<a href=""> 3 </a>-->
+
+                <!--<a href="">最后一页</a>-->
+            <!--</aside>-->
+        </div>
+    </section>
+{% endblock %}

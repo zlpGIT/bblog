@@ -1,0 +1,73 @@
+
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    文章添加
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <!--<script type="text/javascript" src="/static/kindeditor/kindeditor-all.js"></script>-->
+    <!--<script type="text/javascript" src="/static/kindeditor/lang/zh-CN.js"></script>-->
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap mCustomScrollbar">
+
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">商品详情</h2>
+            <a class="fr top_rt_btn" href="/goods/goods_list/">返回商品列表</a>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {{ error }}
+            <input type='hidden' name='csrfmiddlewaretoken' value='q3tTrBuDcMhfvSS9x2u0yQAyRbboSQuyMyt42kgwgKS0rKxCv31hIWTsS3ULhZn7' />
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">文章标题：</span>
+                        <input type="text" name="name" value="" class="textbox textbox_295" placeholder="商品名称..."/>
+                        
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章描述：</span>
+                        <input type="text" name="desc" value=""  class="textbox" placeholder="商品货号..."/>
+                        
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">分类：</span>
+                        <select class="select" name="category">
+                                {% for type in types %}
+                                <option value="{{ type.id }}">{{ type.t_name }}</option>
+                                {% endfor %}
+                        </select>
+
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">文章详情：</span>
+                        <input type="text" name="content" value=""  class="textbox textbox_295" placeholder="商品库存..."/>
+                        
+                    </li>
+
+                    <!--<li>-->
+                        <!--<span class="item_name" style="width:120px;">产品详情：</span>-->
+
+                        <!--<textarea id="editor_id" name="content" style="width:700px;height:300px;">-->
+                            <!--&lt;strong&gt;HTML内容&lt;/strong&gt;-->
+                        <!--</textarea>-->
+                    <!--</li>-->
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" class="link_btn"/>
+                    </li>
+                </ul>
+            </section>
+        </form>
+    </div>
+</section>
+{% endblock %}

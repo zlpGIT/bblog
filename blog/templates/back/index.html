@@ -1,0 +1,53 @@
+
+{% extends 'back/base_main.html' %}
+
+
+{% block title %}
+    后台管理系统--首页
+{% endblock %}
+
+
+
+{% block js %}
+    {{ super() }}
+    <script src="/static/back/js/html5.js"></script>
+    <script>
+
+        (function($){
+            $(window).load(function(){
+
+                $("a[rel='load-content']").click(function(e){
+                    e.preventDefault();
+                    var url=$(this).attr("href");
+                    $.get(url,function(data){
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo","h2:last");
+                    });
+                });
+
+                $(".content").delegate("a[href='top']","click",function(e){
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
+                });
+
+            });
+        })(jQuery);
+    </script>
+{% endblock %}
+
+{% block content %}
+    <section class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <h1 style="color:red;font-size:20px;font-weight:bold;text-align:center;">
+                博客管理后台
+            </h1>
+            <br>
+            <p>采用Flask开发，存储数据库为关系型数据库Mysql</p>
+            <br>
+            <p>后台集中功能为：文章发布、用户管理等模块</p>
+
+
+        </div>
+    </section>
+{% endblock %}
